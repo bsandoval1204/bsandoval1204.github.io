@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brianna Sandoval</title>
+  <meta name="description" content="UCLA Public Health '26. UCLA School of Dentistry '30." />
+
+  <meta property="og:title" content="Brianna Sandoval" />
+  <meta property="og:description" content="UCLA Public Health '26. UCLA School of Dentistry '30." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.85em%22 font-size=%2295%22 font-family=%22serif%22 font-style=%22italic%22 fill=%22%23c8553d%22>b</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f6efe2;
+      --bg-warm: #ede2cd;
+      --bg-card: #f0e6d2;
+      --fg: #1c1612;
+      --muted: #7a6f60;
+      --muted-soft: #a89c8a;
+      --accent: #c8553d;
+      --accent-soft: #e8a48f;
+      --rule: rgba(28, 22, 18, 0.12);
+      --rule-soft: rgba(28, 22, 18, 0.06);
+
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, var(--rule-soft) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--rule-soft) 1px, transparent 1px);
+      background-size: 88px 88px;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+
+    .glow {
+      position: fixed;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232, 164, 143, 0.35), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 88px 32px 120px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 600px) {
+      main { padding: 56px 22px 88px; }
+    }
+
+    header {
+      margin-bottom: 112px;
+      opacity: 0;
+      animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin: 0 0 36px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--muted);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-variation-settings: "opsz" 144;
+      font-size: clamp(3.2rem, 10vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      margin: 0 0 28px;
+    }
+
+    h1 .light { font-weight: 300; color: var(--muted); }
+    h1 em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--accent);
+      font-variation-settings: "opsz" 144;
+    }
+
+    .tagline {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tagline .arrow { color: var(--accent); font-family: var(--serif); font-style: italic; }
+
+    section, footer {
+      margin-bottom: 88px;
+      opacity: 0;
+      animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.25s; }
+    section:nth-of-type(2) { animation-delay: 0.4s; }
+    section:nth-of-type(3) { animation-delay: 0.55s; }
+    footer { animation-delay: 0.7s; }
+
+    .label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin: 0 0 32px;
+    }
+
+    .label .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .portrait {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted-soft);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: 1px dashed var(--accent-soft);
+      opacity: 0.6;
+    }
+
+    .about-text { font-size: 1.05rem; line-height: 1.65; }
+    .about-text p { margin: 0 0 14px; }
+    .about-text p:last-child { margin: 0; }
+
+    @media (max-width: 600px) {
+      .about-grid { grid-template-columns: 1fr; gap: 24px; }
+      .portrait { width: 110px; height: 110px; }
+    }
+
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 70px;
+      top: 12px;
+      bottom: 12px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--rule), var(--accent-soft), var(--rule));
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 32px;
+      padding: 18px 0;
+      position: relative;
+    }
+
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: 65px;
+      top: 28px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      transition: transform 300ms ease, background 300ms ease;
+    }
+
+    .timeline li:hover::before {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+
+    .timeline .year {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+
+    .timeline .entry h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      margin: 0 0 4px;
+    }
+
+    .timeline .entry p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .timeline .entry .accent {
+      color: var(--accent);
+      font-style: italic;
+      font-family: var(--serif);
+    }
+
+    @media (max-width: 600px) {
+      .timeline::before { left: 50px; }
+      .timeline li { grid-template-columns: 50px 1fr; gap: 20px; }
+      .timeline li::before { left: 45px; }
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      padding: 28px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      transition: transform 280ms ease, border-color 280ms ease, background 280ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 320ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-soft);
+    }
+
+    .card:hover::before { transform: scaleX(1); }
+
+    .card .icon {
+      width: 28px;
+      height: 28px;
+      margin-bottom: 14px;
+      color: var(--accent);
+    }
+
+    .card h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 1.25rem;
+      margin: 0 0 6px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    footer .label { margin-bottom: 24px; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      font-family: var(--mono);
+      font-size: 0.88rem;
+    }
+
+    .links a {
+      color: var(--fg);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 200ms ease;
+    }
+
+    .links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: var(--fg);
+      transform-origin: right;
+      transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .links a:hover { color: var(--accent); }
+    .links a:hover::after {
+      background: var(--accent);
+      transform-origin: left;
+    }
+
+    .signoff {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .signoff .heart {
+      color: var(--accent);
+      font-family: var(--serif);
+      font-style: italic;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      header, section, footer { opacity: 1 !important; }
+    }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+  </style>
+</head>
+
+<body>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <main>
+    <header>
+      <p class="kicker">Brianna Sandoval &middot; Los Angeles</p>
+      <h1>
+        Future <em>dentist</em>,<br/>
+        <span class="light">current</span> <em>Bruin</em>.
+      </h1>
+      <p class="tagline">
+        Public Health '26 <span class="arrow">&rarr;</span> UCLA School of Dentistry, Class of '30
+      </p>
+    </header>
+
+    <section>
+      <p class="label"><span class="dot"></span>About</p>
+      <div class="about-grid">
+        <div class="portrait" aria-label="Portrait placeholder">photo</div>
+        <div class="about-text">
+          <p>
+            I'm a fourth year studying Public Health at UCLA, headed to the
+            UCLA School of Dentistry next fall. I care about preventive care,
+            access, and the quiet ways health policy actually reaches people.
+          </p>
+          <p>
+            Off campus you'll find me in the pool, on a long run somewhere
+            around Westwood, or three episodes deep into something I shouldn't
+            have started at 11pm.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label"><span class="dot"></span>The Path</p>
+      <ol class="timeline">
+        <li>
+          <span class="year">2022</span>
+          <div class="entry">
+            <h3>Started at UCLA</h3>
+            <p>Public Health major. <span class="accent">Bruin</span> for life.</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2026</span>
+          <div class="entry">
+            <h3>Graduating</h3>
+            <p>BS in Public Health, with a soft spot for community health policy.</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2026</span>
+          <div class="entry">
+            <h3>UCLA School of Dentistry</h3>
+            <p>DDS Class of <span class="accent">2030</span>. Same campus, new white coat.</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2030</span>
+          <div class="entry">
+            <h3>Dr. Sandoval</h3>
+            <p>Stay tuned for whatever comes next.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <p class="label"><span class="dot"></span>Off the Clock</p>
+      <div class="cards">
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 16c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/>
+            <path d="M2 20c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/>
+            <circle cx="17" cy="7" r="2"/>
+            <path d="M5 13l4-3 5 2"/>
+          </svg>
+          <h3>Swimming</h3>
+          <p>Laps clear the head better than coffee.</p>
+        </div>
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="13" cy="4" r="2"/>
+            <path d="M4 22l4-7 3 2-2 5"/>
+            <path d="M14 22l-2-5 3-3 4 1"/>
+            <path d="M8 9l4 1 2-3 4 2"/>
+          </svg>
+          <h3>Running</h3>
+          <p>Long, slow miles. The hills come for everyone.</p>
+        </div>
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="14" rx="2"/>
+            <path d="M2 9h20"/>
+            <path d="M8 21h8"/>
+            <path d="M12 18v3"/>
+          </svg>
+          <h3>Netflix</h3>
+          <p>Will not apologize for the watch history.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="label"><span class="dot"></span>Get in Touch</p>
+      <div class="links">
+        <a href="mailto:you@example.com">Email</a>
+        <a href="https://github.com/bsandoval1204">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
+      <div class="signoff">
+        <span>Los Angeles, CA</span>
+        <span class="heart">&copy; Brianna Sandoval</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
